@@ -24,8 +24,7 @@ export default function Welcome() {
         </h1>
 
         <p className="mt-4 text-sm text-[#de8f18] max-w-md mx-auto">
-          We'd be delighted to have you join us. Please complete
-          the form below to confirm your attendance.
+          We'd be delighted to have you join us. Please complete the form below to confirm your attendance.
         </p>
 
         <div className="w-16 h-[1px] bg-[#c9993a] mx-auto mt-6 opacity-50"></div>
