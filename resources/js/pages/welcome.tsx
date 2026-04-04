@@ -39,7 +39,7 @@ export default function Welcome() {
           <div className="flex justify-center -mt-16 mb-6">
             <img
               src="/logo.jpeg"
-              className="w-60 h-60 rounded object-cover border-4 border-white shadow-lg"
+              className="w-80 h-80 rounded object-cover border-4 border-white shadow-lg"
             />
           </div>
 
