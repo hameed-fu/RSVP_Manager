@@ -24,7 +24,7 @@ class RsvpController extends Controller
     {
         Rsvp::create($request->validated());
 
-        return redirect()->back()->with('success', 'RSVP submitted successfully!');
+        return redirect()->back()->with('success', 'Thank you for your RSVP! We will be selling tickets soon, please watch the Facebook pages for details!');
     }
     public function store1(StoreRsvpRequest $request)
     {
