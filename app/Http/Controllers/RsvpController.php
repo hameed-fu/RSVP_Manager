@@ -19,6 +19,7 @@ class RsvpController extends Controller
             'canRegister' => false, // Features::enabled(Features::registration()),
         ]);
     }
+    
 
     public function store(StoreRsvpRequest $request)
     {
