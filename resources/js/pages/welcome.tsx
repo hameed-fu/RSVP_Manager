@@ -3,6 +3,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useEffect } from "react";
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue
+} from "@/components/ui/select"
 
 export default function Welcome() {
   useEffect(() => {
@@ -60,6 +63,7 @@ function RSVPForm() {
     name: "",
     phone: "",
     email: "",
+    school_choice: "",
     guests_count: 1,
     message: "",
   });
@@ -75,8 +79,8 @@ function RSVPForm() {
   };
 
   const bookAnother = () => {
-     flash.success = null;
-     reset();
+    flash.success = null;
+    reset();
   }
 
   if (flash?.success) {
@@ -112,7 +116,7 @@ function RSVPForm() {
           Full Name <span className="text-[#c9993a]">*</span>
         </label>
         <Input
-          className="mt-1 h-12 bg-[#faf6ee] border-[#de8f18]"
+          className="mt-1 h-11 bg-[#faf6ee] border-[#de8f18]"
           placeholder="Full Name"
           value={data.name}
           onChange={(e) => setData("name", e.target.value)}
@@ -127,7 +131,7 @@ function RSVPForm() {
         </label>
         <Input
           placeholder="Phone"
-          className="h-12 bg-[#faf6ee] border-[#de8f18]"
+          className="h-11 bg-[#faf6ee] border-[#de8f18]"
           value={data.phone}
           onChange={(e) => setData("phone", e.target.value)}
         />
@@ -136,37 +140,60 @@ function RSVPForm() {
       {/* EMAIL */}
       <div>
         <label className="text-sm font-medium">
-          Email
+          Email <span className="text-[#c9993a]">*</span>
         </label>
+
         <Input
           type="email"
           placeholder="Email"
-          className="h-12 bg-[#faf6ee] border-[#de8f18]"
+          className="h-11 bg-[#faf6ee] border-[#de8f18] focus:ring-2 focus:ring-[#de8f18] focus:border-[#de8f18]"
           value={data.email}
           onChange={(e) => setData("email", e.target.value)}
         />
+         {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
       </div>
 
+      <div>
+        <label className="text-sm font-medium">School Choice <span className="text-[#c9993a]">*</span></label>
+
+        <Select
+          value={data.school_choice}
+          onValueChange={(v) => setData("school_choice", v)}
+           
+        >
+          <SelectTrigger className="w-full bg-[#faf6ee] border-[#de8f18]   px-4 focus:ring-2  ">
+            <SelectValue placeholder="Select school choice" />
+          </SelectTrigger>
+
+          <SelectContent >
+            <SelectItem value="Truman">Truman</SelectItem>
+            <SelectItem value="Taylor Center">Taylor Center</SelectItem>
+            <SelectItem value="Kennedy">Kennedy</SelectItem>
+          </SelectContent>
+        </Select>
+          {errors.school_choice && <p className="text-xs text-red-500">{errors.school_choice}</p>}
+      </div>
       {/* GUESTS */}
       <div>
         <label className="text-sm font-medium">
-          Number of Guests
+          Number of attendants
         </label>
         <Input
           type="number"
           min={1}
-          className="h-12 bg-[#faf6ee] border-[#de8f18]"
+          className="h-11 bg-[#faf6ee] border-[#de8f18]"
           value={data.guests_count}
           onChange={(e) =>
             setData("guests_count", Number(e.target.value))
           }
         />
+        {errors.guests_count && <p className="text-xs text-red-500">{errors.guests_count}</p>}
       </div>
 
       {/* BUTTON */}
       <Button
         type="submit"
-        className="w-full h-12 bg-[#1a1209] text-[#f0d9a0]"
+        className="w-full h-11 bg-[#1a1209] text-[#f0d9a0] text-lg"
         disabled={processing}
       >
         {processing && <Loader2 className="animate-spin w-4 h-4 mr-2" />}

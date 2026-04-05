@@ -96,6 +96,7 @@
             <th class="col-phone">Phone</th>
             <th class="col-email">Email</th>
             <th class="col-guests">Guests</th> 
+            <th class="col-guests">School</th> 
             <th class="col-status">Status</th>
         </tr>
     </thead>
@@ -108,6 +109,7 @@
                 <td class="col-phone">{{ $rsvp->phone }}</td>
                 <td class="col-email">{{ $rsvp->email }}</td>
                 <td class="col-guests">{{ $rsvp->guests_count }}</td>
+                <td class="col-guests">{{ $rsvp->school_choice }}</td>
                 {{-- <td class="col-payment">
                     {{ $rsvp->payment->provider ?? '-' }}<br>
                     {{ $rsvp->payment->amount ?? '' }}

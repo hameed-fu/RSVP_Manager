@@ -28,6 +28,7 @@ class StoreRsvpRequest extends FormRequest
             'email' => 'required|email|unique:rsvps,email',
             'guests_count' => 'required|integer|min:1',
             'payment_type' => 'nullable|in:now,later,stripe,paypal',
+            'school_choice' => 'required',
             // 'message' => 'nullable|string',
         ];
     }

@@ -14,6 +14,7 @@ class Rsvp extends Model
         'message',
         'status',
         'payment_type',
+        'school_choice',
         'ticket_code'
     ];
 

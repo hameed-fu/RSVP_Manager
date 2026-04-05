@@ -62,8 +62,8 @@ export default function DataTable({ data }: any) {
                             <TableHead>Phone</TableHead>
                             <TableHead>Email</TableHead>
                             <TableHead>Guests</TableHead>
+                            <TableHead>School Choice</TableHead>
                             <TableHead>Status</TableHead>
-                            {/* <TableHead>Payment</TableHead> */}
                             <TableHead>Date</TableHead>
                             <TableHead className="text-right"></TableHead>
                         </TableRow>
@@ -79,6 +79,8 @@ export default function DataTable({ data }: any) {
                                 <TableCell>{item.phone}</TableCell>
                                 <TableCell>{item.email}</TableCell>
                                 <TableCell>{item.guests_count}</TableCell>
+                                <TableCell>{item.school_choice}</TableCell>
+
                                 <TableCell><StatusBadge status={item.status} /></TableCell>
                                 {/* <TableCell className="justify-center">
                                     {item.payment ? (
