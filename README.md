@@ -47,12 +47,8 @@ This application allows event organizers to collect attendee information, manage
 - Print-friendly attendee list
 
 ---
-
-### 🔐 Security
-- Input validation using Laravel Form Requests
-- Optional admin authentication (Laravel Breeze)
-
----
+ 
+ 
 
 ## 🛠️ Tech Stack
 
