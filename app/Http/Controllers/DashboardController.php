@@ -10,22 +10,12 @@ class DashboardController extends Controller
 {
     public function __invoke(Request $request)
     {
-        // Latest RSVPs
         $recents = Rsvp::latest()->take(50)->get();
 
-        // Basic counts
         $totalRsvps = Rsvp::count();
-
-        // Total guests (sum of guests_count column)
         $totalGuests = Rsvp::sum('guests_count');
-
-        // Today's RSVPs
         $todayRsvps = Rsvp::whereDate('created_at', Carbon::today())->count();
-
-        // Yesterday RSVPs (for growth calculation)
         $yesterdayRsvps = Rsvp::whereDate('created_at', Carbon::yesterday())->count();
-
-
         $confirmedRsvps = Rsvp::where('status', 'confirmed')->count();
 
         $stats = [
@@ -37,7 +27,42 @@ class DashboardController extends Controller
 
         return inertia('dashboard', [
             'stats' => $stats,
-            'recent' => $recents
+            'recent' => $recents,
         ]);
+    }
+
+    public function exportCsv()
+    {
+        $rsvps = Rsvp::where('status', 'confirmed')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $filename = 'ticket-purchasers-' . now()->format('Y-m-d') . '.csv';
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"$filename\"",
+        ];
+
+        $callback = function () use ($rsvps) {
+            $handle = fopen('php://output', 'w');
+            fputcsv($handle, ['Name', 'Address', 'Phone', 'Email', 'Guests', 'Ticket Code', 'Purchased At']);
+
+            foreach ($rsvps as $rsvp) {
+                fputcsv($handle, [
+                    $rsvp->name,
+                    $rsvp->address ?? '',
+                    $rsvp->phone ?? '',
+                    $rsvp->email,
+                    $rsvp->guests_count,
+                    $rsvp->ticket_code,
+                    $rsvp->created_at->format('Y-m-d H:i'),
+                ]);
+            }
+
+            fclose($handle);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 }

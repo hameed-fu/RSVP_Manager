@@ -8,6 +8,7 @@ class Rsvp extends Model
 {
     protected $fillable = [
         'name',
+        'address',
         'phone',
         'email',
         'guests_count',

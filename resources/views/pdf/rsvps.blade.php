@@ -50,14 +50,14 @@
         }
 
         /* ✅ Column widths */
-        .col-ticket { width: 14%; }
-        .col-name { width: 14%; }
+        .col-index { width: 4%; text-align: left;}
+        .col-name { width: 12%; }
+        .col-address { width: 16%; }
         .col-phone { width: 12%; }
         .col-email { width: 18%; }
         .col-guests { width: 8%; text-align: left; }
-        .col-payment { width: 16%; }
-        .col-status { width: 10%; text-align: left; }
-        .col-index { width: 5%; text-align: left;}
+        .col-school { width: 12%; }
+        .col-status { width: 8%; text-align: left; }
 
         .status {
             padding: 2px 4px;
@@ -91,12 +91,13 @@
 <table>
     <thead>
         <tr>
-            <th  class="col-index">#</th>
+            <th class="col-index">#</th>
             <th class="col-name">Name</th>
+            <th class="col-address">Address</th>
             <th class="col-phone">Phone</th>
             <th class="col-email">Email</th>
             <th class="col-guests">Guests</th> 
-            <th class="col-guests">School</th> 
+            <th class="col-school">School</th> 
             <th class="col-status">Status</th>
         </tr>
     </thead>
@@ -104,16 +105,13 @@
     <tbody>
         @forelse($rsvps as $key => $rsvp)
             <tr> 
-                <td  class="col-index">{{ $key + 1 }}</td>
+                <td class="col-index">{{ $key + 1 }}</td>
                 <td class="col-name">{{ $rsvp->name }}</td>
+                <td class="col-address">{{ $rsvp->address ?? '-' }}</td>
                 <td class="col-phone">{{ $rsvp->phone }}</td>
                 <td class="col-email">{{ $rsvp->email }}</td>
                 <td class="col-guests">{{ $rsvp->guests_count }}</td>
-                <td class="col-guests">{{ $rsvp->school_choice }}</td>
-                {{-- <td class="col-payment">
-                    {{ $rsvp->payment->provider ?? '-' }}<br>
-                    {{ $rsvp->payment->amount ?? '' }}
-                </td> --}}
+                <td class="col-school">{{ $rsvp->school_choice }}</td>
                 <td class="col-status">
                     <span class="status {{ $rsvp->status }}">
                         {{ ucfirst($rsvp->status) }}

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->integer('guests_count');
             $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
-            $table->string('school_choice');
+            $table->string('school_choice')->nullable();
             $table->text('message')->nullable();
             $table->string('payment_type')->nullable();
             $table->string('ticket_code')->nullable();

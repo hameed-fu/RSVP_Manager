@@ -20,6 +20,7 @@ export default function EditModal({ item, open, setOpen }: any) {
 
     const { data, setData, put, processing } = useForm({
         name: item.name || "",
+        address: item.address || "",
         phone: item.phone || "",
         email: item.email || "",
         guests_count: item.guests_count || 1,
@@ -55,6 +56,16 @@ export default function EditModal({ item, open, setOpen }: any) {
                             value={data.name}
                             onChange={(e) => setData("name", e.target.value)}
                             placeholder="Enter name"
+                        />
+                    </div>
+
+                    {/* ADDRESS */}
+                    <div className="space-y-2">
+                        <Label>Address</Label>
+                        <Input
+                            value={data.address}
+                            onChange={(e) => setData("address", e.target.value)}
+                            placeholder="Enter address"
                         />
                     </div>
 

@@ -24,12 +24,12 @@ class StoreRsvpRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'address' => 'nullable|string',
             'phone' => 'nullable|string|max:20',
             'email' => 'required|email|unique:rsvps,email',
             'guests_count' => 'required|integer|min:1',
             'payment_type' => 'nullable|in:now,later,stripe,paypal',
-            'school_choice' => 'required',
-            // 'message' => 'nullable|string',
+            'school_choice' => 'nullable',
         ];
     }
 }

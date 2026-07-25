@@ -66,6 +66,7 @@ class RSVPEventController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'address' => 'nullable|string',
             'phone' => 'required|string|max:50',
             'email' => 'required|email|unique:rsvps,email',
             'guests_count' => 'required|integer|min:1',
@@ -87,6 +88,7 @@ class RSVPEventController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
+            'address' => 'nullable|string',
             'phone' => 'required',
             'email' => "required|email|unique:rsvps,email,$id",
             'guests_count' => 'required|integer|min:1',
@@ -160,5 +162,19 @@ class RSVPEventController extends Controller
         ])->setPaper('a4', 'portrait');
 
         return $pdf->download('rsvps.pdf');
+    }
+
+    /* ================= SINGLE PDF ================= */
+    public function downloadPdf($id)
+    {
+        $rsvp = Rsvp::with('payment')->findOrFail($id);
+
+        $pdf = Pdf::loadView('pdf.rsvp-single', [
+            'rsvp' => $rsvp,
+        ])->setPaper('a4', 'portrait');
+
+        $filename = 'rsvp-' . ($rsvp->ticket_code ?? $rsvp->id) . '.pdf';
+
+        return $pdf->download($filename);
     }
 }

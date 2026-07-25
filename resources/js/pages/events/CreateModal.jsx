@@ -16,6 +16,7 @@ export default function CreateModal() {
 
     const [form, setForm] = useState({
         name: '',
+        address: '',
         phone: '',
         email: '',
         guests_count: 1,
@@ -32,9 +33,9 @@ export default function CreateModal() {
             preserveState: false,
             
             onSuccess: () => {
-                // reset form
                 setForm({
                     name: '',
+                    address: '',
                     phone: '',
                     email: '',
                     guests_count: 1,
@@ -71,6 +72,17 @@ export default function CreateModal() {
                             className="mt-1 h-10 text-lg   border-[#de8f18]"
                             value={form.name}
                             onChange={e => setForm({ ...form, name: e.target.value })}
+                        />
+                    </div>
+
+                    {/* ADDRESS */}
+                    <div className="space-y-1">
+                        <label className="text-sm font-medium">Address</label>
+                        <Input
+                            placeholder="Enter address"
+                            className="mt-1 h-10 text-lg border-[#de8f18]"
+                            value={form.address}
+                            onChange={e => setForm({ ...form, address: e.target.value })}
                         />
                     </div>
 

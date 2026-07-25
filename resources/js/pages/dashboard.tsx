@@ -3,7 +3,9 @@ import {
     Users,
     UserCheck,
     Calendar,
-    TrendingUp
+    TrendingUp,
+    FileDown,
+    List
 } from "lucide-react";
 
 import {
@@ -23,6 +25,8 @@ import {
     TableRow
 } from "@/components/ui/table";
 
+import { Button } from "@/components/ui/button";
+
 export default function Dashboard() {
     const { stats, recent } = usePage().props as any;
 
@@ -33,13 +37,31 @@ export default function Dashboard() {
             <div className="p-6 space-y-8">
 
                 {/* HEADER */}
-                <div>
-                    <h1 className="text-3xl font-semibold tracking-tight ">
-                        Dashboard
-                    </h1>
-                    <p className='text-sm '>
-                        Overview of your event's RSVPs and guest activity
-                    </p>
+                <div className="flex justify-between items-center">
+                    <div>
+                        <h1 className="text-3xl font-semibold tracking-tight">
+                            Dashboard
+                        </h1>
+                        <p className='text-sm'>
+                            Overview of your event's RSVPs and guest activity
+                        </p>
+                    </div>
+                    <div className="flex gap-2">
+                        <Button
+                            variant="outline"
+                            onClick={() => window.location.href = '/rsvps'}
+                        >
+                            <List className="w-4 h-4 mr-2" />
+                            View All RSVPs
+                        </Button>
+                        <Button
+                            variant="outline"
+                            onClick={() => window.open('/dashboard/export/csv', '_blank')}
+                        >
+                            <FileDown className="w-4 h-4 mr-2" />
+                            Export Ticket Purchasers
+                        </Button>
+                    </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-4">

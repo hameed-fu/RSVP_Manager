@@ -47,7 +47,7 @@ export default function PaymentModal({
             <div className="space-y-3 mt-2">
 
               {/* Pay Later */}
-              <Button
+              {/* <Button
                 className="w-full border"
                 variant="secondary"
                 disabled={isLoading}
@@ -57,7 +57,7 @@ export default function PaymentModal({
                   <Loader2 className="animate-spin mr-2" />
                 )}
                 Pay Later
-              </Button>
+              </Button> */}
 
               {/* Stripe */}
               <Button
