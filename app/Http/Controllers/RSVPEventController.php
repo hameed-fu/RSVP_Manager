@@ -39,7 +39,7 @@ class RSVPEventController extends Controller
             $query->whereDate('created_at', '<=', $request->to);
         }
 
-        $recents = $query->latest()->paginate(10)->withQueryString();
+        $recents = $query->latest()->paginate(50)->withQueryString();
 
         
         $totalRsvps = Rsvp::count();

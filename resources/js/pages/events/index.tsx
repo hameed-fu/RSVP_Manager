@@ -41,6 +41,14 @@ export default function RsvpsIndex() {
         })
     }
 
+    const handlePage = (url: string | null) => {
+        if (!url) return
+        router.get(url, {}, {
+            preserveState: true,
+            preserveScroll: true
+        })
+    }
+
     useEffect(() => {
         if (flash?.success) {
             toast.success(flash.success);
@@ -171,6 +179,60 @@ export default function RsvpsIndex() {
 
                 {/* TABLE COMPONENT */}
                 <RsvpTable data={recent} />
+
+                {/* PAGINATION */}
+                {recent.last_page > 1 && (
+                    <div className="flex items-center justify-between">
+                        <p className="text-sm text-muted-foreground">
+                            Showing {recent.from} to {recent.to} of {recent.total} results
+                        </p>
+
+                        <div className="flex items-center gap-1">
+                            {recent.links.map((link: any, i: number) => {
+                                if (link.label.includes('Previous')) {
+                                    return (
+                                        <Button
+                                            key={i}
+                                            variant="outline"
+                                            size="sm"
+                                            disabled={!link.url}
+                                            onClick={() => handlePage(link.url)}
+                                        >
+                                            Previous
+                                        </Button>
+                                    )
+                                }
+
+                                if (link.label.includes('Next')) {
+                                    return (
+                                        <Button
+                                            key={i}
+                                            variant="outline"
+                                            size="sm"
+                                            disabled={!link.url}
+                                            onClick={() => handlePage(link.url)}
+                                        >
+                                            Next
+                                        </Button>
+                                    )
+                                }
+
+                                return (
+                                    <Button
+                                        key={i}
+                                        variant={link.active ? 'default' : 'outline'}
+                                        size="sm"
+                                        className="min-w-[36px]"
+                                        disabled={!link.url}
+                                        onClick={() => handlePage(link.url)}
+                                    >
+                                        {link.label}
+                                    </Button>
+                                )
+                            })}
+                        </div>
+                    </div>
+                )}
 
             </div>
         </>
