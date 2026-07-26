@@ -60,7 +60,7 @@ export default function PaymentModal({
               </Button> */}
 
               {/* Stripe */}
-              <Button
+              {/* <Button
                 className="w-full"
                 disabled={isLoading}
                 onClick={() => handleSubmit("stripe")}
@@ -71,7 +71,7 @@ export default function PaymentModal({
                   <CreditCard className="mr-2" />
                 )}
                 Pay with Card
-              </Button>
+              </Button> */}
 
               {/* PayPal */}
               <Button
@@ -86,7 +86,9 @@ export default function PaymentModal({
                 )}
                 Pay with PayPal
               </Button>
-
+              <div className="text-red-500 mt-2">
+                You do not need a PayPal account to make a payment using PayPal
+              </div>
             </div>
 
             <DialogFooter className="mt-4">
