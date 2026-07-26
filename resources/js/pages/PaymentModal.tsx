@@ -34,7 +34,7 @@ export default function PaymentModal({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-md rounded-2xl">
+      <DialogContent className="sm:max-w-md rounded-2xl max-h-[90dvh] overflow-y-auto p-4 sm:p-6">
 
         {!paypalData ? (
           <>
