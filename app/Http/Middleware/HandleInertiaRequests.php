@@ -44,6 +44,7 @@ class HandleInertiaRequests extends Middleware
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
 
             'paypal_client_id' => config('paypal.paypal.client_id'),
+            'price_per_guest' => env('PRICE_PER_GUEST') ? env('PRICE_PER_GUEST') : 0.00,
 
             'flash' => [
                 'message' => session('message'),

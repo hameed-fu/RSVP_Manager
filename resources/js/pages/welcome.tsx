@@ -60,7 +60,7 @@ export default function Welcome() {
 /* ================= FORM ================= */
 
 function RSVPForm() {
-  const { flash } = usePage().props as any;
+  const { flash, price_per_guest } = usePage().props as any;
   const ticketRef = useRef(null);
   const { data, setData, errors, reset } = useForm({
     name: "",
@@ -281,7 +281,7 @@ function RSVPForm() {
 
         {/* PRICE */}
         <p className="text-sm text-center text-gray-600">
-          Total: <strong>${data.guests_count * 10}</strong>
+          Total: <strong>${data.guests_count * price_per_guest}</strong>
         </p>
 
         {/* BUTTON */}
